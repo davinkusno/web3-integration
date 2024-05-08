@@ -1,6 +1,10 @@
 import '../styles/globals.css'
 import '@rainbow-me/rainbowkit/styles.css'
 import type { AppProps } from 'next/app'
+import { headers } from 'next/headers'
+
+import { cookieToInitialState } from 'wagmi'
+import { createWeb3Modal } from '@web3modal/wagmi/react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider } from 'wagmi'
@@ -36,9 +40,20 @@ const config = getDefaultConfig({
 
 const client = new QueryClient()
 
-function MyApp({ Component, pageProps }: AppProps) {
+createWeb3Modal({
+	wagmiConfig: config,
+	projectId: 'YOUR_PROJECT_ID',
+	enableAnalytics: true, // Optional - defaults to your Cloud configuration
+	enableOnramp: true, // Optional - false as default
+})
+
+function Web3ModalProvider({ Component, pageProps }: AppProps) {
+	const initialState = cookieToInitialState(config, headers().get('cookie'))
+
 	return (
-		<WagmiProvider config={config}>
+		<WagmiProvider
+			config={config}
+			initialState={initialState}>
 			<QueryClientProvider client={client}>
 				<RainbowKitProvider>
 					<Component {...pageProps} />
@@ -48,4 +63,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 	)
 }
 
-export default MyApp
+export default Web3ModalProvider
