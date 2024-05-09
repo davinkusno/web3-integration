@@ -40,7 +40,7 @@ const client = new QueryClient()
 
 createWeb3Modal({
 	wagmiConfig: config,
-	projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+	projectId: 'projectid',
 	enableAnalytics: true, // Optional - defaults to your Cloud configuration
 	enableOnramp: true, // Optional - false as default
 })
