@@ -1,5 +1,4 @@
 import '../styles/globals.css'
-import '@rainbow-me/rainbowkit/styles.css'
 import type { AppProps } from 'next/app'
 
 import { createWeb3Modal } from '@web3modal/wagmi/react'
@@ -16,23 +15,36 @@ import {
 	polygon,
 	sepolia,
 	avalanche,
+	fantom,
+	opBNB,
 } from 'wagmi/chains'
-import { getDefaultConfig, RainbowKitProvider } from '@rainbow-me/rainbowkit'
 
-const config = getDefaultConfig({
-	appName: 'RainbowKit App',
-	projectId: 'Project_ID',
+import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
+
+const metadata = {
+	name: 'Web3 Integration',
+	description: 'Front End Web3 Integration',
+	url: 'https://web3-integration-one.vercel.app/',
+	icons: ['https://avatars.githubusercontent.com/u/37784886'],
+}
+
+const config = defaultWagmiConfig({
 	chains: [
 		mainnet,
 		goerli,
+		sepolia,
 		bsc,
+		opBNB,
 		polygon,
 		optimism,
 		arbitrum,
 		base,
 		avalanche,
+		fantom,
 		...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [sepolia] : []),
 	],
+	projectId: `${process.env.NEXT_PUBLIC_PROJECT_ID}`,
+	metadata,
 	ssr: true,
 })
 
@@ -40,9 +52,11 @@ const client = new QueryClient()
 
 createWeb3Modal({
 	wagmiConfig: config,
-	projectId: 'projectid',
+	projectId: `${process.env.NEXT_PUBLIC_PROJECT_ID}`,
 	enableAnalytics: true, // Optional - defaults to your Cloud configuration
 	enableOnramp: true, // Optional - false as default
+	defaultChain: mainnet,
+	allowUnsupportedChain: true,
 })
 
 function Web3ModalProvider({ Component, pageProps }: AppProps) {
@@ -51,9 +65,7 @@ function Web3ModalProvider({ Component, pageProps }: AppProps) {
 	return (
 		<WagmiProvider config={config}>
 			<QueryClientProvider client={client}>
-				<RainbowKitProvider>
-					<Component {...pageProps} />
-				</RainbowKitProvider>
+				<Component {...pageProps} />
 			</QueryClientProvider>
 		</WagmiProvider>
 	)
