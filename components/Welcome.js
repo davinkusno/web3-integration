@@ -1,5 +1,3 @@
-import { SiEthereum } from 'react-icons/si'
-import { BsInfoCircle } from 'react-icons/bs'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 export default function Welcome() {
@@ -12,7 +10,7 @@ export default function Welcome() {
 				<p className='my-5 text-white font-light md:w-9/12 w-11/12'>
 					Explore the crypto world by connecting your wallet here.
 				</p>
-				{/* <ConnectButton /> */}
+				<ConnectButton />
 				<w3m-button />
 			</div>
 		</div>
