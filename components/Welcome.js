@@ -1,6 +1,8 @@
-// import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useAccount } from 'wagmi'
 
 export default function Welcome() {
+	const { address } = useAccount()
+
 	return (
 		<div className='flex justify-center md:pl-48 md:p-52 py-12 px-4 text-left'>
 			<div className='flex justify-center flex-col'>
@@ -10,7 +12,6 @@ export default function Welcome() {
 				<p className='my-5 text-white font-light md:w-9/12 w-11/12'>
 					Explore the crypto world by connecting your wallet here.
 				</p>
-				{/* <ConnectButton /> */}
 				<w3m-button />
 			</div>
 		</div>

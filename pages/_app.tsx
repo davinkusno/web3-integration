@@ -60,8 +60,6 @@ createWeb3Modal({
 })
 
 function Web3ModalProvider({ Component, pageProps }: AppProps) {
-	// const initialState = cookieToInitialState(config, headers().get('cookie'))
-
 	return (
 		<WagmiProvider config={config}>
 			<QueryClientProvider client={client}>

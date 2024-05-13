@@ -1,5 +1,5 @@
 {
-	"name": "my-rainbowkit-app",
+	"name": "web3-integration",
 	"private": true,
 	"version": "0.1.0",
 	"scripts": {
@@ -10,14 +10,12 @@
 	},
 	"dependencies": {
 		"@next/env": "^14.2.3",
-		"@rainbow-me/rainbowkit": "^2.0.7",
 		"@tanstack/react-query": "^5.28.4",
 		"@web3modal/wagmi": "^4.1.11",
 		"dotenv": "^16.4.5",
 		"next": "^14.2.3",
 		"react": "^18.3.0",
 		"react-dom": "^18.3.0",
-		"react-icons": "^5.2.1",
 		"viem": "^2.8.12",
 		"wagmi": "^2.5.11"
 	},
